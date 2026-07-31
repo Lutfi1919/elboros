@@ -1,14 +1,14 @@
 type Props = {
-  nama: string;
+  nama?: string;
   umur: number;
   sudahMenikah: "sudah" | "belum";
 };
 
-const PropsComponent = ({ nama, umur, sudahMenikah }: Props) => {
+const PropsComponent = ({ nama = 'Anonim', umur, sudahMenikah }: Props) => {
   return (
     <div>
       <h1>
-        Nama {nama}, saya berusia {umur}, dan saya {sudahMenikah} menikah
+        Nama saya {nama}, saya berusia {umur}, dan saya {sudahMenikah} menikah
       </h1>
     </div>
   );
