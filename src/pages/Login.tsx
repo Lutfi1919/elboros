@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from "react";
+import React, { useState } from "react";
 import { login } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
