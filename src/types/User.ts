@@ -4,3 +4,7 @@ export interface User {
   email: string;
   saldo: number;
 }
+
+export interface UserResponse {
+  data: User
+}
