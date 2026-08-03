@@ -1,34 +1,58 @@
-import './App.css'
-// import { useState, useEffect } from 'react'
-import ParentComponent from './components/ParentComponent';
-import ChildrenProps from './components/ChildrenProps';
-import ListItem from './components/ListItem';
-import { useNavigate } from 'react-router-dom';
+import "./App.css";
+import ParentComponent from "./components/ParentComponent";
+import ChildrenProps from "./components/ChildrenProps";
+import ListItem from "./components/ListItem";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { User } from "./types/User";
+import { showUser } from "./services/user.service";
 
 function App() {
   const navigate = useNavigate();
 
-  const logout = (event: React.MouseEvent<HTMLButtonElement>) => {
-    localStorage.removeItem("token")
+  const logout = () => {
+    localStorage.removeItem("token");
 
-    console.log(event.target);
+    navigate("/login");
+  };
 
-    navigate("/login")
+  const [user, setUser] = useState<User>();
+
+  async function getUser() {
+    try {
+      const result = await showUser();
+      
+      setUser(result.data);
+    } catch (error) {
+      console.error(error);
+    }
   }
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <>
-      <button className='m-2 p-2 rounded-2xl bg-red-500 cursor-pointer' onClick={logout}>
+      <button
+        className="m-2 px-5 py-2 rounded-lg text-white bg-red-500 cursor-pointer"
+        onClick={logout}
+      >
         Logout
       </button>
       <div className="min-h-screen flex flex-col items-center justify-center">
+        {user ? (
+          <p className="mb-4">Halo, {user.name}</p>
+        ) : (
+          <p className="mb-4">Memuat data user...</p>
+        )}
         <ParentComponent />
         <hr />
         <ChildrenProps>lorem</ChildrenProps>
         <ListItem />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
