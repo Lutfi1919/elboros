@@ -4,3 +4,7 @@ export interface Transaction {
   nominal: number;
   catatan: string;
 }
+
+export interface TransactionResponse {
+  data: Transaction[];
+}
