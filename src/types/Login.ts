@@ -1,11 +1,11 @@
-import type { User } from "../types/User";
-
 export interface LoginPayload {
   email: string;
   password: string;
 }
 
 export interface LoginResponse {
-  token: string;
-  user?: User;
+  data: {
+    data: LoginPayload;
+    token: string;
+  }
 }
