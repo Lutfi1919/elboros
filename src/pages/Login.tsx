@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
+import  Swal from 'sweetalert2';
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,11 +13,17 @@ export default function Login() {
 
     try {
       const data = await login({ email, password });
-      // console.log("Response dari API:", data);
 
       localStorage.setItem("token", data.data.token);
 
       navigate("/");
+      
+      Swal.fire({
+        title: "Berhasil Login",
+        text: "Login berhasil",
+        icon: "success"
+      })
+
     } catch (error) {
       console.error(error);
     }
