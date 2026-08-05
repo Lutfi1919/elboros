@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* add google font */
+* {
+  font-family: "Inter", sans-serif;
+}
