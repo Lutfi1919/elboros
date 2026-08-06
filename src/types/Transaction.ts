@@ -3,6 +3,7 @@ export interface Transaction {
   judul: string;
   nominal: number;
   catatan: string;
+  createdAt?: string;
 }
 
 export interface TransactionResponse {
